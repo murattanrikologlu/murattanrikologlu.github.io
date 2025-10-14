@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murat Tanrikologlu | Digital Product Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-black: #0a0a0a;
+            --surface-dark: #111111;
+            --surface-elevated: #1a1a1a;
+            --accent-primary: #ffffff;
+            --accent-secondary: #666666;
+            --text-primary: #ffffff;
+            --text-secondary: #999999;
+            --text-tertiary: #666666;
+            --border-subtle: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--deep-black);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* NAVBAR */
+        nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 80px;
+            z-index: 999;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 20px 80px;
+        }
+
+        nav .logo {
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 48px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: -0.01em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--text-primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--text-primary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 32px;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: 5.5rem;
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 32px;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            line-height: 1.7;
+            max-width: 700px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-cta {
+            margin-top: 56px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            padding: 16px 40px;
+            border: none;
+            border-radius: 8px;
+            background: var(--text-primary);
+            color: var(--deep-black);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-secondary {
+            padding: 16px 40px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+            background: var(--surface-elevated);
+        }
+
+        /* EXPERTISE SECTION */
+        .expertise {
+            padding: 160px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            max-width: 800px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--border-subtle);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .expertise-card {
+            background: var(--surface-dark);
+            padding: 56px 40px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: var(--surface-elevated);
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+        }
+
+        .expertise-card:hover::before {
+            height: 100%;
+        }
+
+        .expertise-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .expertise-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .expertise-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            letter-spacing: -0.01em;
+        }
+
+        /* APPROACH SECTION */
+        .approach {
+            padding: 160px 80px;
+            background: var(--surface-dark);
+        }
+
+        .approach-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .approach-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 120px;
+            align-items: start;
+        }
+
+        .approach-left h2 {
+            font-size: 3rem;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .approach-left p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            letter-spacing: -0.01em;
+        }
+
+        .approach-list {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .approach-item {
+            border-left: 2px solid var(--border-subtle);
+            padding-left: 32px;
+            transition: border-color 0.3s ease;
+        }
+
+        .approach-item:hover {
+            border-color: var(--text-primary);
+        }
+
+        .approach-number {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+        }
+
+        .approach-item h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .approach-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            letter-spacing: -0.01em;
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            padding: 200px 80px;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 4.5rem;
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 32px;
+        }
+
+        .contact p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 56px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: -0.01em;
+        }
+
+        .contact-email {
+            display: inline-block;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 20px 48px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            letter-spacing: -0.02em;
+        }
+
+        .contact-email:hover {
+            border-color: var(--text-primary);
+            background: var(--surface-elevated);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 60px 80px;
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            border-top: 1px solid var(--border-subtle);
+            background: var(--deep-black);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 1200px) {
+            nav {
+                padding: 20px 40px;
+            }
+
+            .hero {
+                padding: 0 40px;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .expertise {
+                padding: 120px 40px;
+            }
+
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .approach {
+                padding: 120px 40px;
+            }
+
+            .approach-content {
+                grid-template-columns: 1fr;
+                gap: 80px;
+            }
+
+            .contact {
+                padding: 160px 40px;
+            }
+
+            .contact h2 {
+                font-size: 3.5rem;
+            }
+
+            footer {
+                padding: 60px 40px;
+            }
+        }
+
+        @media(max-width: 768px) {
+            nav {
+                padding: 16px 24px;
+            }
+
+            nav ul {
+                gap: 24px;
+            }
+
+            nav ul li a {
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: 0 24px;
+                min-height: 90vh;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .expertise {
+                padding: 100px 24px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .approach {
+                padding: 100px 24px;
+            }
+
+            .approach-left h2 {
+                font-size: 2.2rem;
+            }
+
+            .contact {
+                padding: 120px 24px;
+            }
+
+            .contact h2 {
+                font-size: 2.5rem;
+            }
+
+            .contact-email {
+                font-size: 1.1rem;
+                padding: 16px 32px;
+            }
+
+            footer {
+                padding: 40px 24px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="logo">Murat Tanrikologlu</div>
+        <ul>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-label">Digital Product Developer</span>
+            <h1>Building exceptional digital experiences</h1>
+            <p>I craft premium mobile applications and digital products that combine sophisticated design, robust engineering, and seamless user experiences.</p>
+            <div class="hero-cta">
+                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start a Conversation</button>
+                <a href="#expertise" class="btn-secondary">Explore My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section class="expertise" id="expertise">
+        <div class="section-header">
+            <div class="section-label">What I Do</div>
+            <h2 class="section-title">Expertise across the full product lifecycle</h2>
+        </div>
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <h3>Product Strategy</h3>
+                <p>Translating business objectives into compelling product visions with clear roadmaps and measurable outcomes.</p>
+            </div>
+            <div class="expertise-card">
+                <h3>Mobile Development</h3>
+                <p>Native iOS applications built with Swift and SwiftUI, optimized for performance and user delight.</p>
+            </div>
+            <div class="expertise-card">
+                <h3>UI/UX Design</h3>
+                <p>Intuitive interfaces that balance aesthetic excellence with functional clarity and accessibility.</p>
+            </div>
+            <div class="expertise-card">
+                <h3>AI Integration</h3>
+                <p>Leveraging machine learning and AI capabilities to create intelligent, adaptive user experiences.</p>
+            </div>
+            <div class="expertise-card">
+                <h3>System Architecture</h3>
+                <p>Scalable, maintainable codebases with clean architecture patterns and modern development practices.</p>
+            </div>
+            <div class="expertise-card">
+                <h3>Growth & Analytics</h3>
+                <p>Data-driven optimization strategies that drive engagement, retention, and sustainable growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="approach" id="approach">
+        <div class="approach-container">
+            <div class="approach-content">
+                <div class="approach-left">
+                    <h2>A disciplined approach to excellence</h2>
+                    <p>Every project follows a proven methodology that ensures quality, efficiency, and alignment with your business goals.</p>
+                </div>
+                <div class="approach-list">
+                    <div class="approach-item">
+                        <div class="approach-number">01</div>
+                        <h3>Discovery & Research</h3>
+                        <p>Deep dive into your business context, user needs, and market landscape to define clear success criteria.</p>
+                    </div>
+                    <div class="approach-item">
+                        <div class="approach-number">02</div>
+                        <h3>Design & Prototyping</h3>
+                        <p>Rapid iteration on concepts and interactive prototypes to validate ideas before development begins.</p>
+                    </div>
+                    <div class="approach-item">
+                        <div class="approach-number">03</div>
+                        <h3>Development & Testing</h3>
+                        <p>Agile development cycles with continuous integration, rigorous testing, and regular stakeholder feedback.</p>
+                    </div>
+                    <div class="approach-item">
+                        <div class="approach-number">04</div>
+                        <h3>Launch & Optimization</h3>
+                        <p>Strategic rollout with performance monitoring, user feedback integration, and continuous improvement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <h2>Let's create something exceptional</h2>
+        <p>Whether you have a project in mind or just want to explore possibilities, I'd love to hear from you.</p>
+        <a href="mailto:dev.murattan@icloud.com" class="contact-email">dev.murattan@icloud.com</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div>&copy; 2025 Murat Tanrikologlu. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#approach">Approach</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
