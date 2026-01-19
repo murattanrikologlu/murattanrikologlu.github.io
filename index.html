@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Murat Tanrikologlu | AI-Powered Creative Apps</title>
+    <title>Murat Tanrikologlu | Premium iOS Apps</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -158,17 +158,43 @@
             overflow: hidden;
         }
 
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.6;
+            z-index: 0;
+        }
+
         .hero::before {
             content: '';
             position: absolute;
             top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.8) 60%, rgba(10,10,10,1) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 20%;
             left: 50%;
             transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
             pointer-events: none;
             animation: pulse 8s ease-in-out infinite;
+            z-index: 1;
         }
 
         @keyframes pulse {
@@ -179,7 +205,7 @@
         .hero-content {
             max-width: 1000px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .hero-label {
@@ -335,9 +361,24 @@
             box-shadow: 0 24px 64px rgba(139, 92, 246, 0.2);
         }
 
-        .app-card:hover::before {
+.app-card:hover::before {
             opacity: 1;
         }
+
+        .app-card {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .app-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .app-card:nth-child(1).visible { transition-delay: 0s; }
+        .app-card:nth-child(2).visible { transition-delay: 0.15s; }
+        .app-card:nth-child(3).visible { transition-delay: 0.3s; }
 
         .app-card > * {
             position: relative;
@@ -445,6 +486,66 @@
             background-clip: text;
             margin-bottom: 16px;
             line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .stat-number .counter {
+            display: inline-block;
+            min-width: 1ch;
+        }
+
+        .stat-number .suffix {
+            font-size: 3rem;
+        }
+
+        .stat-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-item:nth-child(2) {
+            transition-delay: 0.15s;
+        }
+
+        .stat-item:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        /* Star rating animation */
+        .stars-container {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: scale(0);
+            animation: starPop 0.4s ease forwards;
+        }
+
+        .star:nth-child(1) { animation-delay: 0.8s; }
+        .star:nth-child(2) { animation-delay: 0.9s; }
+        .star:nth-child(3) { animation-delay: 1s; }
+        .star:nth-child(4) { animation-delay: 1.1s; }
+        .star:nth-child(5) { animation-delay: 1.2s; }
+
+        @keyframes starPop {
+            0% { opacity: 0; transform: scale(0) rotate(-180deg); }
+            50% { transform: scale(1.3) rotate(10deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
         }
 
         .stat-label {
@@ -472,12 +573,14 @@
             background: var(--surface-dark);
             border: 1px solid var(--border-subtle);
             border-radius: 20px;
-            transition: all 0.3s ease;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(30px);
         }
 
         .feature-card:hover {
             border-color: var(--accent-purple);
-            transform: translateY(-4px);
+            transform: translateY(-4px) !important;
         }
 
         .feature-icon {
@@ -752,6 +855,10 @@
                 font-size: 3rem;
             }
 
+            .stat-number .suffix {
+                font-size: 2rem;
+            }
+
             .features {
                 padding: 100px 24px;
             }
@@ -795,10 +902,11 @@
 
     <!-- HERO -->
     <section class="hero" id="home">
+        <div class="hero-bg" id="heroBg" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/aisonggenerator-143e5.firebasestorage.app/o/WebSiteLogos%2Fherosection.png?alt=media&token=46af043b-ddb1-4d61-ad3d-b0035c304633');"></div>
         <div class="hero-content">
-            <span class="hero-label">AI-Powered Creative Suite</span>
+            <span class="hero-label">Premium iOS Applications</span>
             <h1>Transform Your Ideas Into Reality</h1>
-            <p>Discover our collection of cutting-edge AI applications designed to unleash your creativity. From video generation to music creation and photo editing.</p>
+            <p>Discover our collection of innovative mobile applications designed to unleash your creativity. From video generation to music creation and photo editing.</p>
             <div class="hero-cta">
                 <button class="btn-primary" onclick="document.getElementById('apps').scrollIntoView({behavior:'smooth'})">Explore Our Apps</button>
                 <a href="#stats" class="btn-secondary">See Our Impact</a>
@@ -810,8 +918,8 @@
     <section class="apps" id="apps">
         <div class="section-header">
             <div class="section-label">Our Applications</div>
-            <h2 class="section-title">Premium AI-Powered Apps</h2>
-            <p class="section-description">Three powerful applications that harness the latest AI technology to bring your creative visions to life.</p>
+<h2 class="section-title">Our Premium Apps</h2>
+            <p class="section-description">Three powerful applications designed to bring your creative visions to life.</p>
         </div>
         <div class="apps-grid">
             <!-- Cinora - AI Video Generator -->
@@ -879,19 +987,32 @@
             <div class="section-header">
                 <div class="section-label">Our Impact</div>
                 <h2 class="section-title">Trusted by Creators Worldwide</h2>
-                <p class="section-description">Join thousands of users who are already creating amazing content with our AI-powered applications.</p>
+<p class="section-description">Join thousands of users who are already creating amazing content with our applications.</p>
             </div>
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number">250K+</div>
+                    <div class="stat-number">
+                        <span class="counter" data-target="250" data-suffix="K+">0</span><span class="suffix">K+</span>
+                    </div>
                     <div class="stat-label">Total Downloads</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">4.8★</div>
+                    <div class="stat-number">
+                        <span class="counter" data-target="4.8" data-decimal="true">0</span><span class="suffix">★</span>
+                    </div>
                     <div class="stat-label">Average Rating</div>
+                    <div class="stars-container">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">150+</div>
+                    <div class="stat-number">
+                        <span class="counter" data-target="150" data-suffix="+">0</span><span class="suffix">+</span>
+                    </div>
                     <div class="stat-label">Countries Worldwide</div>
                 </div>
             </div>
@@ -902,7 +1023,7 @@
     <section class="features" id="features">
         <div class="section-header">
             <div class="section-label">Why Choose Us</div>
-            <h2 class="section-title">Built for Creators, Powered by AI</h2>
+<h2 class="section-title">Built for Creators</h2>
         </div>
         <div class="features-grid">
             <div class="feature-card">
@@ -1024,6 +1145,108 @@
                 document.body.style.overflow = '';
             }
         });
+
+        // Animated Counter with slot machine effect
+        const counters = document.querySelectorAll('.counter');
+        const statItems = document.querySelectorAll('.stat-item');
+        let countersAnimated = false;
+
+        function animateCounter(counter) {
+            const target = parseFloat(counter.dataset.target);
+            const isDecimal = counter.dataset.decimal === 'true';
+            const duration = 2000;
+            const steps = 60;
+            const stepTime = duration / steps;
+            let current = 0;
+            const increment = target / steps;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
+                    setTimeout(updateCounter, stepTime);
+                } else {
+                    counter.textContent = isDecimal ? target.toFixed(1) : target;
+                }
+            };
+
+            // Slot machine effect - rapid random numbers first
+            let slotSteps = 15;
+            const slotEffect = () => {
+                if (slotSteps > 0) {
+                    counter.textContent = isDecimal 
+                        ? (Math.random() * target).toFixed(1) 
+                        : Math.floor(Math.random() * target);
+                    slotSteps--;
+                    setTimeout(slotEffect, 50);
+                } else {
+                    current = 0;
+                    updateCounter();
+                }
+            };
+            slotEffect();
+        }
+
+        function checkStatsVisibility() {
+            const statsSection = document.getElementById('stats');
+            if (!statsSection || countersAnimated) return;
+
+            const rect = statsSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (rect.top < windowHeight * 0.8 && rect.bottom > 0) {
+                countersAnimated = true;
+                
+                statItems.forEach(item => {
+                    item.classList.add('visible');
+                });
+
+                setTimeout(() => {
+                    counters.forEach(counter => {
+                        animateCounter(counter);
+                    });
+                }, 300);
+            }
+        }
+
+window.addEventListener('scroll', checkStatsVisibility);
+        checkStatsVisibility();
+
+        // App cards scroll animation
+        const appCards = document.querySelectorAll('.app-card');
+        
+        function checkAppsVisibility() {
+            const appsSection = document.getElementById('apps');
+            if (!appsSection) return;
+
+            const rect = appsSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (rect.top < windowHeight * 0.85) {
+                appCards.forEach(card => {
+                    card.classList.add('visible');
+                });
+            }
+        }
+
+        window.addEventListener('scroll', checkAppsVisibility);
+        checkAppsVisibility();
+
+        // Feature cards animation
+        const featureCards = document.querySelectorAll('.feature-card');
+        
+        function checkFeaturesVisibility() {
+            featureCards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.9) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkFeaturesVisibility);
+        checkFeaturesVisibility();
     </script>
 </body>
 </html>
