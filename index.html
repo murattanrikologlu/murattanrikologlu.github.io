@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Murat Tanrikologlu | iOS Mobile App Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Murat Tanrikologlu | AI-Powered Creative Apps</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --deep-black: #0a0a0a;
             --surface-dark: #111111;
             --surface-elevated: #1a1a1a;
             --accent-primary: #ffffff;
-            --accent-secondary: #666666;
+            --accent-purple: #8b5cf6;
+            --accent-blue: #3b82f6;
+            --accent-pink: #ec4899;
             --text-primary: #ffffff;
             --text-secondary: #999999;
             --text-tertiary: #666666;
@@ -35,7 +37,7 @@
         }
 
         html {
-            /* Fix for iOS Safari viewport height */
+            scroll-behavior: smooth;
             height: -webkit-fill-available;
         }
 
@@ -68,30 +70,12 @@
             padding: 16px 80px;
         }
 
-        @media(max-width: 768px) {
-            nav.scrolled {
-                padding: 12px 20px;
-            }
-        }
-
         nav .logo {
             font-size: 0.95rem;
             font-weight: 600;
             letter-spacing: -0.02em;
             color: var(--text-primary);
             text-transform: uppercase;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 200px;
-        }
-
-        nav .logo .full-name {
-            display: inline;
-        }
-
-        nav .logo .short-name {
-            display: none;
         }
 
         .mobile-menu-toggle {
@@ -164,81 +148,106 @@
         /* HERO SECTION */
         .hero {
             min-height: 100vh;
-            min-height: -webkit-fill-available;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             padding: 120px 80px 80px;
-            max-width: 1400px;
-            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.8; transform: translateX(-50%) scale(1.1); }
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 1000px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-label {
             font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-secondary);
+            font-weight: 600;
+            color: var(--accent-purple);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             margin-bottom: 32px;
             display: inline-block;
         }
 
         .hero h1 {
-            font-size: 5.5rem;
-            font-weight: 600;
+            font-size: 6rem;
+            font-weight: 700;
             line-height: 1.1;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.04em;
             margin-bottom: 32px;
-            color: var(--text-primary);
+            background: linear-gradient(135deg, #ffffff 0%, #999999 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero p {
             color: var(--text-secondary);
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             line-height: 1.7;
-            max-width: 700px;
+            max-width: 800px;
+            margin: 0 auto 56px;
             font-weight: 400;
             letter-spacing: -0.01em;
         }
 
         .hero-cta {
-            margin-top: 56px;
             display: flex;
             gap: 20px;
+            justify-content: center;
             align-items: center;
         }
 
         .btn-primary {
-            padding: 16px 40px;
+            padding: 18px 48px;
             border: none;
-            border-radius: 8px;
-            background: var(--text-primary);
-            color: var(--deep-black);
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
+            color: var(--text-primary);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             letter-spacing: -0.01em;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 16px 48px rgba(139, 92, 246, 0.4);
         }
 
         .btn-secondary {
-            padding: 16px 40px;
+            padding: 18px 48px;
             border: 1px solid var(--border-subtle);
-            border-radius: 8px;
+            border-radius: 12px;
             background: transparent;
             color: var(--text-primary);
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -251,232 +260,351 @@
             background: var(--surface-elevated);
         }
 
-        /* EXPERTISE SECTION */
-        .expertise {
+        /* APPS SECTION */
+        .apps {
             padding: 160px 80px;
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
         }
 
         .section-header {
-            margin-bottom: 80px;
+            text-align: center;
+            margin-bottom: 100px;
         }
 
         .section-label {
             font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-secondary);
+            font-weight: 600;
+            color: var(--accent-purple);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             margin-bottom: 16px;
         }
 
         .section-title {
-            font-size: 3.5rem;
-            font-weight: 600;
-            line-height: 1.2;
-            letter-spacing: -0.03em;
-            max-width: 800px;
-        }
-
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            background: var(--border-subtle);
-            border: 1px solid var(--border-subtle);
-        }
-
-        .expertise-card {
-            background: var(--surface-dark);
-            padding: 56px 40px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .expertise-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background: var(--surface-elevated);
-            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 0;
-        }
-
-        .expertise-card:hover::before {
-            height: 100%;
-        }
-
-        .expertise-card > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .expertise-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            letter-spacing: -0.02em;
-        }
-
-        .expertise-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            letter-spacing: -0.01em;
-        }
-
-        /* APPROACH SECTION */
-        .approach {
-            padding: 160px 80px;
-            background: var(--surface-dark);
-        }
-
-        .approach-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .approach-content {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 120px;
-            align-items: start;
-        }
-
-        .approach-left h2 {
-            font-size: 3rem;
-            font-weight: 600;
+            font-size: 4rem;
+            font-weight: 700;
             line-height: 1.2;
             letter-spacing: -0.03em;
             margin-bottom: 24px;
         }
 
-        .approach-left p {
+        .section-description {
+            font-size: 1.2rem;
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
             line-height: 1.7;
-            letter-spacing: -0.01em;
         }
 
-        .approach-list {
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .app-card {
+            background: var(--surface-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 48px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            gap: 48px;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .approach-item {
-            border-left: 2px solid var(--border-subtle);
-            padding-left: 32px;
-            transition: border-color 0.3s ease;
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .approach-item:hover {
-            border-color: var(--text-primary);
+        .app-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 24px 64px rgba(139, 92, 246, 0.2);
         }
 
-        .approach-number {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-tertiary);
-            margin-bottom: 12px;
-            letter-spacing: 0.05em;
+        .app-card:hover::before {
+            opacity: 1;
         }
 
-        .approach-item h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
+        .app-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 26px;
+            margin-bottom: 32px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-card h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
             margin-bottom: 12px;
             letter-spacing: -0.02em;
         }
 
-        .approach-item p {
+        .app-tagline {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            letter-spacing: -0.01em;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            flex-grow: 1;
         }
 
-        /* CONTACT SECTION */
-        .contact {
-            padding: 200px 80px;
+        .app-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .app-features li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .app-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-purple);
+            font-weight: 700;
+        }
+
+        .app-store-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 32px;
+            background: var(--text-primary);
+            color: var(--deep-black);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .app-store-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+        }
+
+        .app-store-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* STATS SECTION */
+        .stats {
+            padding: 160px 80px;
+            background: var(--surface-dark);
             text-align: center;
+        }
+
+        .stats-container {
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .contact h2 {
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 80px;
+            margin-top: 80px;
+        }
+
+        .stat-item {
+            padding: 40px;
+        }
+
+        .stat-number {
             font-size: 4.5rem;
-            font-weight: 600;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* FEATURES SECTION */
+        .features {
+            padding: 160px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+            margin-top: 80px;
+        }
+
+        .feature-card {
+            padding: 48px;
+            background: var(--surface-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* CTA SECTION */
+        .cta {
+            padding: 200px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+        }
+
+        .cta h2 {
+            font-size: 4.5rem;
+            font-weight: 700;
             line-height: 1.1;
             letter-spacing: -0.03em;
             margin-bottom: 32px;
         }
 
-        .contact p {
+        .cta p {
             color: var(--text-secondary);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 56px;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            letter-spacing: -0.01em;
-        }
-
-        .contact-email {
-            display: inline-block;
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            text-decoration: none;
-            padding: 20px 48px;
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            letter-spacing: -0.02em;
-        }
-
-        .contact-email:hover {
-            border-color: var(--text-primary);
-            background: var(--surface-elevated);
-            transform: translateY(-2px);
         }
 
         /* FOOTER */
         footer {
-            text-align: center;
-            padding: 60px 80px;
-            font-size: 0.9rem;
-            color: var(--text-tertiary);
-            border-top: 1px solid var(--border-subtle);
+            padding: 80px 80px 60px;
             background: var(--deep-black);
+            border-top: 1px solid var(--border-subtle);
         }
 
         .footer-content {
             max-width: 1400px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        .footer-links {
-            display: flex;
-            gap: 32px;
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 60px;
         }
 
-        .footer-links a {
-            color: var(--text-tertiary);
-            text-decoration: none;
+        .footer-brand h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .footer-links h4 {
             font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
             transition: color 0.3s ease;
         }
 
-        .footer-links a:hover {
+        .footer-links ul li a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .social-links a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
             color: var(--text-primary);
         }
 
@@ -486,68 +614,57 @@
                 padding: 20px 40px;
             }
 
-            nav .logo {
-                max-width: 180px;
-            }
-
             .hero {
-                padding: 0 40px;
+                padding: 140px 40px 80px;
             }
 
             .hero h1 {
-                font-size: 4rem;
+                font-size: 4.5rem;
             }
 
-            .expertise {
+            .apps {
                 padding: 120px 40px;
             }
 
-            .expertise-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .approach {
-                padding: 120px 40px;
-            }
-
-            .approach-content {
+            .apps-grid {
                 grid-template-columns: 1fr;
-                gap: 80px;
+                gap: 32px;
             }
 
-            .contact {
+            .stats {
+                padding: 120px 40px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .features {
+                padding: 120px 40px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
                 padding: 160px 40px;
             }
 
-            .contact h2 {
-                font-size: 3.5rem;
+            footer {
+                padding: 60px 40px 40px;
             }
 
-            footer {
-                padding: 60px 40px;
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
         }
 
         @media(max-width: 768px) {
             nav {
                 padding: 16px 20px;
-                flex-wrap: nowrap;
-                gap: 12px;
-            }
-
-            nav .logo {
-                font-size: 0.75rem;
-                max-width: none;
-                flex-shrink: 1;
-                min-width: 0;
-            }
-
-            nav .logo .full-name {
-                display: inline;
-            }
-
-            nav .logo .short-name {
-                display: none;
             }
 
             .mobile-menu-toggle {
@@ -583,7 +700,6 @@
                 font-size: 1rem;
                 padding: 20px 0;
                 display: block;
-                white-space: nowrap;
             }
 
             nav ul li a::after {
@@ -592,30 +708,17 @@
 
             .hero {
                 padding: 140px 24px 60px;
-                min-height: 100vh;
-                min-height: -webkit-fill-available;
-                justify-content: flex-start;
-                padding-top: 140px;
-            }
-
-            .hero-label {
-                font-size: 0.75rem;
-                margin-bottom: 24px;
             }
 
             .hero h1 {
                 font-size: 2.5rem;
-                margin-bottom: 24px;
-                line-height: 1.15;
             }
 
             .hero p {
-                font-size: 1rem;
-                line-height: 1.6;
+                font-size: 1.1rem;
             }
 
             .hero-cta {
-                margin-top: 40px;
                 flex-direction: column;
                 width: 100%;
             }
@@ -623,10 +726,9 @@
             .btn-primary,
             .btn-secondary {
                 width: 100%;
-                text-align: center;
             }
 
-            .expertise {
+            .apps {
                 padding: 100px 24px;
             }
 
@@ -634,38 +736,42 @@
                 font-size: 2.5rem;
             }
 
-            .expertise-grid {
-                grid-template-columns: 1fr;
+            .section-description {
+                font-size: 1rem;
             }
 
-            .approach {
+            .app-card {
+                padding: 32px;
+            }
+
+            .stats {
                 padding: 100px 24px;
             }
 
-            .approach-left h2 {
-                font-size: 2.2rem;
+            .stat-number {
+                font-size: 3rem;
             }
 
-            .contact {
+            .features {
+                padding: 100px 24px;
+            }
+
+            .cta {
                 padding: 120px 24px;
             }
 
-            .contact h2 {
+            .cta h2 {
                 font-size: 2.5rem;
             }
 
-            .contact-email {
-                font-size: 1.1rem;
-                padding: 16px 32px;
-            }
-
             footer {
-                padding: 40px 24px;
+                padding: 60px 24px 40px;
             }
 
-            .footer-content {
+            .footer-bottom {
                 flex-direction: column;
                 gap: 24px;
+                text-align: center;
             }
         }
     </style>
@@ -673,18 +779,16 @@
 <body>
     <!-- NAVIGATION -->
     <nav id="navbar">
-        <div class="logo">
-            <span class="full-name">Murat Tanrikologlu</span>
-            <span class="short-name">MT</span>
-        </div>
+        <div class="logo">Murat Tanrikologlu</div>
         <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
         <ul id="mobileMenu">
-            <li><a href="#expertise">Expertise</a></li>
-            <li><a href="#approach">Approach</a></li>
+            <li><a href="#apps">Apps</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#stats">Stats</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -692,99 +796,187 @@
     <!-- HERO -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <span class="hero-label">iOS Mobile App Developer</span>
-            <h1>Crafting premium iOS applications</h1>
-            <p>I develop innovative iOS applications that push the boundaries of mobile technology, combining elegant design with powerful functionality.</p>
+            <span class="hero-label">AI-Powered Creative Suite</span>
+            <h1>Transform Your Ideas Into Reality</h1>
+            <p>Discover our collection of cutting-edge AI applications designed to unleash your creativity. From video generation to music creation and photo editing.</p>
             <div class="hero-cta">
-                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in Touch</button>
-                <a href="#expertise" class="btn-secondary">See What I Do</a>
+                <button class="btn-primary" onclick="document.getElementById('apps').scrollIntoView({behavior:'smooth'})">Explore Our Apps</button>
+                <a href="#stats" class="btn-secondary">See Our Impact</a>
             </div>
         </div>
     </section>
 
-    <!-- EXPERTISE -->
-    <section class="expertise" id="expertise">
+    <!-- APPS SECTION -->
+    <section class="apps" id="apps">
         <div class="section-header">
-            <div class="section-label">What I Do</div>
-            <h2 class="section-title">Building iOS apps from concept to App Store</h2>
+            <div class="section-label">Our Applications</div>
+            <h2 class="section-title">Premium AI-Powered Apps</h2>
+            <p class="section-description">Three powerful applications that harness the latest AI technology to bring your creative visions to life.</p>
         </div>
-        <div class="expertise-grid">
-            <div class="expertise-card">
-                <h3>App Ideation</h3>
-                <p>Identifying market opportunities and transforming creative concepts into viable iOS applications with clear value propositions.</p>
+        <div class="apps-grid">
+            <!-- Cinora - AI Video Generator -->
+            <a href="https://apps.apple.com/app/id6756228121" class="app-card" target="_blank" rel="noopener">
+                <img src="https://firebasestorage.googleapis.com/v0/b/aisonggenerator-143e5.firebasestorage.app/o/WebSiteLogos%2Fvideologo.png?alt=media&token=2e7cb882-f1d1-48ef-ab5f-ce8e7b339ea6" alt="Cinora Logo" class="app-logo">
+                <h3>Cinora</h3>
+                <p class="app-tagline">AI Video Generator - Create stunning videos from text prompts using advanced AI technology.</p>
+                <ul class="app-features">
+                    <li>Text-to-video generation</li>
+                    <li>Professional quality output</li>
+                    <li>Multiple style options</li>
+                    <li>Fast rendering engine</li>
+                </ul>
+                <div class="app-store-btn">
+                    <svg class="app-store-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+                    </svg>
+                    Download on App Store
+                </div>
+            </a>
+
+            <!-- Groovr - AI Song Generator -->
+            <a href="https://apps.apple.com/app/id6757434891" class="app-card" target="_blank" rel="noopener">
+                <img src="https://firebasestorage.googleapis.com/v0/b/aisonggenerator-143e5.firebasestorage.app/o/WebSiteLogos%2Fsonglogo.png?alt=media&token=c10caf3f-4c42-4526-a972-94ab3c718b40" alt="Groovr Logo" class="app-logo">
+                <h3>Groovr</h3>
+                <p class="app-tagline">AI Song Generator - Compose original music and songs with the power of artificial intelligence.</p>
+                <ul class="app-features">
+                    <li>AI-powered music composition</li>
+                    <li>Multiple genre support</li>
+                    <li>Custom lyrics generation</li>
+                    <li>High-quality audio export</li>
+                </ul>
+                <div class="app-store-btn">
+                    <svg class="app-store-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+                    </svg>
+                    Download on App Store
+                </div>
+            </a>
+
+            <!-- Photorithm - AI Photo Editor -->
+            <a href="https://apps.apple.com/app/id6754553236" class="app-card" target="_blank" rel="noopener">
+                <img src="https://firebasestorage.googleapis.com/v0/b/aisonggenerator-143e5.firebasestorage.app/o/WebSiteLogos%2Fphotologo.png?alt=media&token=53a563b2-768f-438c-9b5f-a41461610f13" alt="Photorithm Logo" class="app-logo">
+                <h3>Photorithm</h3>
+                <p class="app-tagline">AI Photo Editor - Transform your photos with intelligent editing powered by advanced AI algorithms.</p>
+                <ul class="app-features">
+                    <li>AI-enhanced photo editing</li>
+                    <li>Smart object removal</li>
+                    <li>One-tap enhancements</li>
+                    <li>Professional filters</li>
+                </ul>
+                <div class="app-store-btn">
+                    <svg class="app-store-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+                    </svg>
+                    Download on App Store
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats" id="stats">
+        <div class="stats-container">
+            <div class="section-header">
+                <div class="section-label">Our Impact</div>
+                <h2 class="section-title">Trusted by Creators Worldwide</h2>
+                <p class="section-description">Join thousands of users who are already creating amazing content with our AI-powered applications.</p>
             </div>
-            <div class="expertise-card">
-                <h3>iOS Development</h3>
-                <p>Native iOS applications built with Swift and SwiftUI, leveraging the latest Apple technologies for optimal performance.</p>
-            </div>
-            <div class="expertise-card">
-                <h3>UI/UX Design</h3>
-                <p>Intuitive interfaces that balance aesthetic excellence with functional clarity and accessibility.</p>
-            </div>
-            <div class="expertise-card">
-                <h3>AI Integration</h3>
-                <p>Leveraging machine learning and AI capabilities to create intelligent, adaptive user experiences.</p>
-            </div>
-            <div class="expertise-card">
-                <h3>App Architecture</h3>
-                <p>Clean, scalable code architecture following iOS best practices for maintainability and future growth.</p>
-            </div>
-            <div class="expertise-card">
-                <h3>App Store Success</h3>
-                <p>Strategic app launches, ASO optimization, and data-driven improvements to maximize downloads and user retention.</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">250K+</div>
+                    <div class="stat-label">Total Downloads</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.8★</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Countries Worldwide</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- APPROACH -->
-    <section class="approach" id="approach">
-        <div class="approach-container">
-            <div class="approach-content">
-                <div class="approach-left">
-                    <h2>From idea to App Store</h2>
-                    <p>Every app I build follows a proven development process that ensures quality, innovation, and market success.</p>
-                </div>
-                <div class="approach-list">
-                    <div class="approach-item">
-                        <div class="approach-number">01</div>
-                        <h3>Concept & Research</h3>
-                        <p>Identifying user needs, analyzing market trends, and validating app concepts before development begins.</p>
-                    </div>
-                    <div class="approach-item">
-                        <div class="approach-number">02</div>
-                        <h3>Design & Prototyping</h3>
-                        <p>Creating intuitive user interfaces and interactive prototypes that follow Apple's Human Interface Guidelines.</p>
-                    </div>
-                    <div class="approach-item">
-                        <div class="approach-number">03</div>
-                        <h3>Development & Testing</h3>
-                        <p>Building robust iOS apps with Swift/SwiftUI, comprehensive testing, and continuous refinement.</p>
-                    </div>
-                    <div class="approach-item">
-                        <div class="approach-number">04</div>
-                        <h3>Launch & Growth</h3>
-                        <p>App Store submission, marketing strategy, user feedback analysis, and ongoing feature development.</p>
-                    </div>
-                </div>
+    <!-- FEATURES SECTION -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <div class="section-label">Why Choose Us</div>
+            <h2 class="section-title">Built for Creators, Powered by AI</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Experience blazing-fast AI processing optimized for iOS devices. Get professional results in seconds, not hours.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Professional Quality</h3>
+                <p>Create content that rivals professional studios. Our AI models are trained on millions of high-quality samples.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Privacy First</h3>
+                <p>Your creations stay yours. We prioritize user privacy with secure processing and no data collection.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>Intuitive Design</h3>
+                <p>Beautiful, easy-to-use interfaces that follow Apple's design guidelines. Start creating in minutes.</p>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-        <h2>Let's connect</h2>
-        <a href="mailto:dev.murattan@icloud.com" class="contact-email">dev.murattan@icloud.com</a>
+    <!-- CTA SECTION -->
+    <section class="cta" id="contact">
+        <h2>Ready to Create?</h2>
+        <p>Download our apps today and start bringing your creative ideas to life with the power of AI.</p>
+        <div class="hero-cta">
+            <button class="btn-primary" onclick="document.getElementById('apps').scrollIntoView({behavior:'smooth'})">Explore Apps</button>
+            <a href="mailto:dev.murattan@icloud.com" class="btn-secondary">Contact Us</a>
+        </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
-            <div>&copy; 2025 Murat Tanrikologlu. All rights reserved.</div>
-            <div class="footer-links">
-                <a href="#home">Home</a>
-                <a href="#expertise">Expertise</a>
-                <a href="#approach">Approach</a>
-                <a href="#contact">Contact</a>
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>Murat Tanrikologlu</h3>
+                    <p>Creating innovative AI-powered applications that empower creators worldwide to bring their visions to life.</p>
+                    <p style="margin-top: 16px;"><a href="mailto:dev.murattan@icloud.com" style="color: var(--accent-purple); text-decoration: none;">dev.murattan@icloud.com</a></p>
+                </div>
+                <div class="footer-links">
+                    <h4>Groovr</h4>
+                    <ul>
+                        <li><a href="https://apps.apple.com/app/id6757434891" target="_blank">App Store</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Cinora</h4>
+                    <ul>
+                        <li><a href="https://apps.apple.com/app/id6756228121" target="_blank">App Store</a></li>
+                        <li><a href="https://www.tiktok.com/@cinoraapp?_r=1&_t=ZS-93CLVJSqHFh" target="_blank">TikTok</a></li>
+                        <li><a href="https://www.instagram.com/cinoraapp?igsh=MThpYW8wbTYzeHN4Yw%3D%3D&utm_source=qr" target="_blank">Instagram</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Photorithm</h4>
+                    <ul>
+                        <li><a href="https://apps.apple.com/app/id6754553236" target="_blank">App Store</a></li>
+                        <li><a href="https://www.tiktok.com/@photorithmapp?_r=1&_t=ZS-93CLa3EWkcL" target="_blank">TikTok</a></li>
+                        <li><a href="https://www.instagram.com/photorithmapp?igsh=YXpjbmYwMHo1eHI4&utm_source=qr" target="_blank">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2025 Murat Tanrikologlu. All rights reserved.</div>
+                <div class="social-links">
+                    <a href="mailto:dev.murattan@icloud.com">Contact</a>
+                    <a href="#apps">Apps</a>
+                    <a href="#features">Features</a>
+                </div>
             </div>
         </div>
     </footer>
@@ -794,7 +986,6 @@
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
         
-        // Scroll effect
         window.addEventListener('scroll', () => {
             if (window.scrollY > 60) {
                 navbar.classList.add('scrolled');
@@ -803,20 +994,17 @@
             }
         });
 
-        // Mobile menu toggle
         mobileMenuToggle.addEventListener('click', () => {
             mobileMenuToggle.classList.toggle('active');
             mobileMenu.classList.toggle('active');
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
 
-        // Smooth scroll for all anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    // Close mobile menu if open
                     mobileMenuToggle.classList.remove('active');
                     mobileMenu.classList.remove('active');
                     document.body.style.overflow = '';
@@ -829,7 +1017,6 @@
             });
         });
 
-        // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!navbar.contains(e.target) && mobileMenu.classList.contains('active')) {
                 mobileMenuToggle.classList.remove('active');
