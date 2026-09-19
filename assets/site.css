@@ -153,7 +153,7 @@ a.row:hover { background: rgba(255,255,255,0.03); }
   .footer-top { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 720px) {
-  .nav-links { position: fixed; top: 0; left: 0; right: 0; z-index: 1; padding: calc(84px + env(safe-area-inset-top)) var(--gutter) 32px; flex-direction: column; align-items: flex-start; gap: 18px; background: rgba(8,8,12,0.97); border-bottom: 1px solid var(--line); transform: translateY(-110%); transition: transform .28s cubic-bezier(.2,.8,.2,1); }
+  .nav-links { position: fixed; top: 0; left: 0; right: 0; z-index: 1; padding: calc(84px + env(safe-area-inset-top)) var(--gutter) 32px; flex-direction: column; align-items: flex-start; gap: 18px; background: var(--bg); border-bottom: 1px solid var(--line); transform: translateY(-110%); transition: transform .28s cubic-bezier(.2,.8,.2,1); }
   .nav-links.is-open { transform: none; }
   .nav-links a { font-size: 1.05rem; }
   .nav-toggle { display: block; }
