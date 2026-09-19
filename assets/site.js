@@ -121,9 +121,9 @@
   window.addEventListener('scroll', onScrollNav, { passive: true }); onScrollNav();
   if (toggle) toggle.addEventListener('click', function () {
     var open = links.classList.toggle('is-open'); toggle.classList.toggle('is-open', open); toggle.setAttribute('aria-expanded', open);
-    nav.classList.toggle('is-open', open); document.body.classList.toggle('menu-open', open);
+    nav.classList.toggle('is-open', open);
   });
-  function closeMenu() { links.classList.remove('is-open'); nav.classList.remove('is-open'); document.body.classList.remove('menu-open'); if (toggle) { toggle.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); } }
+  function closeMenu() { links.classList.remove('is-open'); nav.classList.remove('is-open'); if (toggle) { toggle.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); } }
   function scrollToY(y) { if (window.__lenis) window.__lenis.scrollTo(y); else window.scrollTo({ top: y, behavior: 'smooth' }); }
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
