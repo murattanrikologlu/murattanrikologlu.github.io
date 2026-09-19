@@ -147,7 +147,9 @@
 
   /* ---- Motion (GSAP optional) ---- */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') { root.classList.add('reduced'); return; }
+  var touch = !window.matchMedia('(pointer: fine)').matches;
+  if (touch) root.classList.add('touch');
+  if (reduced || touch || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') { root.classList.add('reduced'); return; }
   gsap.registerPlugin(ScrollTrigger);
   if (typeof Lenis !== 'undefined' && window.matchMedia('(pointer: fine)').matches) {
     var lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
@@ -157,14 +159,14 @@
     gsap.ticker.lagSmoothing(0);
   }
   gsap.utils.toArray('[data-reveal]').forEach(function (n) {
-    gsap.to(n, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: n, start: 'top 88%', once: true } });
+    gsap.to(n, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', scrollTrigger: { trigger: n, start: 'top 95%', once: true } });
   });
   gsap.from('#icon-row > *', { opacity: 0, y: 18, scale: 0.9, stagger: 0.06, duration: 0.8, ease: 'power3.out', delay: 0.2, clearProps: 'transform,opacity' });
   // each band: content slides in; the band underneath scales back as the next one covers it
   bandEls.forEach(function (b, i) {
     var inner = b.querySelector('.band-inner');
     gsap.fromTo(inner.children, { opacity: 0, y: 30 }, { opacity: 1, y: 0, stagger: 0.08, duration: 0.8, ease: 'power3.out',
-      scrollTrigger: { trigger: b, start: 'top 70%', toggleActions: 'play none none reverse' } });
+      scrollTrigger: { trigger: b, start: 'top 80%', toggleActions: 'play none none reverse' } });
     if (bandEls[i + 1]) {
       gsap.to(inner, { scale: 0.92, opacity: 0.25, ease: 'none',
         scrollTrigger: { trigger: bandEls[i + 1], start: 'top bottom', end: 'top top', scrub: true } });
